@@ -72,7 +72,7 @@ name=${bam/%_S[1-12]*_L001_R1_001_val_1.fq.gz/}
 ml SAMtools/1.16.1-GCC-11.3.0 
 ml BWA/0.7.17-GCCcore-11.3.0
 #
-bwa mem -M -v 3 -t $THREADS $GENOME ${trimmed}*val_1.fq.gz ${trimmed}*val_2.fq.g$read2 | samtools view -bhSu - | samtools sort -@ $THREADS -T $outdir/SortedBamFiles/tempReps -o "$bam" -
+bwa mem -M -v 3 -t $THREADS $GENOME ${trimmed}/*val_1.fq.gz ${trimmed}/*val_2.fq.gz | samtools view -bhSu - | samtools sort -@ $THREADS -T $outdir/SortedBamFiles/tempReps -o "$bam" -
 samtools index "$bam"
 
 
