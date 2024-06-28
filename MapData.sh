@@ -7,8 +7,9 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=20gb
 #SBATCH --time=8:00:00
-#SBATCH --output=../MappingOutput/logs//MapRNAseq.%j.out
-#SBATCH --error=../MappingOutput/logs/MapRNAseq.%j.err
+#SBATCH --output=../MappingOutput/logs/%j.out
+#SBATCH --error=../MappingOutput/logs/%j.err
+
 
 cd $SLURM_SUBMIT_DIR
 
