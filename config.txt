@@ -1,17 +1,6 @@
 #number of CPUs
 THREADS=12
 
-#FASTQ should be the path to a folder containing all your zipped fastq files; filename endings should be fastq.gz
-
-FASTQ="/scratch/zlewis/Run139/Run139_DEMUX"
-
-#Edit Code to add Q score option
-
-#Name of Output directory. This will be created one directory above the folder you run the MapCutAndRun.sh script from.   
-
-OutputFolderName="Run139_OUTPUT"
-
-
 #GENOME should be the path to a bwa-indexed genome file; include the entire root file name; you can uncomment formatted genome you want to use or add a path to a different genome
 
 #GENOME="path/to/IndexedGenomeFile"
@@ -34,14 +23,9 @@ GENOME="/home/zlewis/Genomes/Neurospora/Nc12_RefSeq/GCA_000182925.2_NC12_genomic
 #GENOME="/home/zlewis/Genomes/Salmonella_enterica/GCF_000006945.2_ASM694v2_genomic.fna.gz".  #Salmonella enterica
 
 
-
-
-
 #SET Deeptools paramenters
 #binsize for windows
 BIN="25"
 
 #smoothlength setting, for smoothing the enrichment curve
 SMOOTH="75"
-
-##removed options for MNase analysis. Now, bulk reads will be plotted using deeptools using the bin and smooth parameters above ('_Bulk.bw'. A seperate MNase file will be generated to plot mononcleosome centers ('_MNase.bw') using a binsize of 1 and a smooth length of 25. 
