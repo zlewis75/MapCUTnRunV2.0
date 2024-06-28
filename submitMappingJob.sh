@@ -25,8 +25,9 @@ mkdir ${outdir}/logs
 #make output file folders
 mkdir "${outdir}/TrimmedFastQs"
 mkdir "${outdir}/bamFiles"
-mkdir "${outdir}/counts"
 mkdir "${outdir}/bigWig"
+mkdir "${outdir}/Peaks"
+
 
 while read -r line
 
