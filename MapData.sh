@@ -35,10 +35,10 @@ source config.txt
 trimmed="${outdir}/TrimmedFastQs/${accession}"
 mkdir $trimmed
 
-bamdir="${outdir}/bamFiles/"
+bamdir="${outdir}/bamFiles"
 mkdir "${bamdir}"
 
-bwDir="${outdir}/bigWig/"
+bwDir="${outdir}/bigWig"
 mkdir "${bwDir}"
 
 PeakDir="${outdir}/Peaks/${accession}"
