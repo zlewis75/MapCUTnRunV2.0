@@ -74,7 +74,7 @@ ml BWA/0.7.17-GCCcore-11.3.0
 #
 
 #make directory to store temporary files written by samtools sort
-mkdir ${tmp}/${accession}
+mkdir -p ${tmp}/${accession}
 
 bwa mem -M -v 3 -t $THREADS $GENOME ${trimmed}/*val_1.fq.gz ${trimmed}/*val_2.fq.gz | samtools view -bhSu - | samtools sort -@ $THREADS -T ${bamdir}/${accession}/ -o "$bam" -
 samtools index "$bam"
