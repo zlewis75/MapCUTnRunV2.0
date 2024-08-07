@@ -1,5 +1,4 @@
 #!/bin/bash
-#SBATCH --job-name=zl_mapChIPseq
 #SBATCH --partition=batch
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=zlewis@uga.edu
@@ -7,8 +6,8 @@
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=20gb
 #SBATCH --time=8:00:00
-#SBATCH --output=../MappingOutput/logs/%j.out
-#SBATCH --error=../MappingOutput/logs/%j.err
+#SBATCH --output=../MappingOutput/logs/%x.out
+#SBATCH --error=../MappingOutput/logs/%x.err
 
 
 cd $SLURM_SUBMIT_DIR
