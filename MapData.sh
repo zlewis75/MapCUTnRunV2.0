@@ -27,13 +27,14 @@ source config.txt
 
 ###################################
 #input file variables
-  read1=${fastqPath}/${accession}/${accession}*_R1_001.fastq.gz
-  read2=${fastqPath}/${accession}/${accession}*_R2_001.fastq.gz
+  read1="${fastqPath}/${accession}*_R1_001.fastq.gz"
+  read2="${fastqPath}/${accession}*_R2_001.fastq.gz"
 
 #make output file folders
 trimmed="${outdir}/TrimmedFastQs/${accession}"
 mkdir $trimmed
 
+tmp="${outdir}/tempFile"
 bamdir="${outdir}/bamFiles"
 mkdir "${bamdir}"
 
@@ -71,9 +72,15 @@ name=${bam/%_S[1-12]*_L001_R1_001_val_1.fq.gz/}
 ml SAMtools/1.16.1-GCC-11.3.0 
 ml BWA/0.7.17-GCCcore-11.3.0
 #
-bwa mem -M -v 3 -t $THREADS $GENOME ${trimmed}/*val_1.fq.gz ${trimmed}/*val_2.fq.gz | samtools view -bhSu - | samtools sort -@ $THREADS -T ${bamdir}/${accession}/tempReps -o "$bam" -
+
+#make directory to store temporary files written by samtools sort
+mkdir ${tmp}/${accession}
+
+bwa mem -M -v 3 -t $THREADS $GENOME ${trimmed}/*val_1.fq.gz ${trimmed}/*val_2.fq.gz | samtools view -bhSu - | samtools sort -@ $THREADS -T ${bamdir}/${accession}/ -o "$bam" -
 samtools index "$bam"
 
+#delete directory written by samtools sort
+rm -r ${tmp}/${accession}
 
 ml deepTools/3.5.2-foss-2022a
 #Plot all reads
@@ -89,4 +96,5 @@ module load MACS3/3.0.0b1-foss-2022a-Python-3.10.4
 macs3 callpeak -t "${bam}" -f BAMPE -n "${accession}" --broad -g 41037538 --broad-cutoff 0.1 --outdir "${PeakDir}" --min-length 800 --max-gap 500 --nolambda
 
 
-done#
+done
+
