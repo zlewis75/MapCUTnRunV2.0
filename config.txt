@@ -8,7 +8,7 @@ THREADS=12
 GENOME="/home/zlewis/Genomes/Neurospora/Nc12_RefSeq/GCA_000182925.2_NC12_genomic"
 
 #GENOME="/home/zlewis/Genomes/AfumagatisGenome/Af_CEA10/Afum_A1163_edit6.fasta"
-#GENOME="/home/zlewis/Genomes/Neurospora/Nc12_RefSeq/GCA_00182925.2plusHphplusBarplusTetO.fna" #Neurospora12 Genbank
+#GENOME="/home/zlewis/Genomes/Neurospora/Nc12_RefSeq/Nc12_RefSeq_wIntegratedTetO/GCA_000182925.2_NC12_genomic_wTetO_at_his3.fna"  #Nc12 genome from Andy Klocko with tetO array integrated at his-3
 #GENOME="/home/zlewis/Genomes/Neurospora/Nc12_RefSeq/GCA_00182925.2plusHphplusBarplusTetO_his3masked.fna"
 #GENOME="/home/zlewis/Genomes/Mouse/GCF_000001635.27_GRCm39_genomic.fna.gz" #Mouse
 #GENOME="/home/zlewis/Genomes/Cryptococcus/CryptococcusNeoformans_XL280" #Cryptococcus XL280
