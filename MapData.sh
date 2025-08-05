@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --partition=batch
-#SBATCH --mail-type=ALL
+#SBATCH --mail-type=FAIL
 #SBATCH --mail-user=zlewis@uga.edu
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
@@ -62,15 +62,15 @@ name=${bam/%_S[1-12]*_L001_R1_001_val_1.fq.gz/}
 ##################
 #Trimming
 #################
-	  ml Trim_Galore/0.6.7-GCCcore-11.2.0
+	  module load Trim_Galore/0.6.10-GCCcore-12.3.0
 
 	  trim_galore --illumina --fastqc --paired --length 25 --basename ${accession} --gzip -o $trimmed $read1 $read2
 	  wait
 
 
+module load  SAMtools/1.21-GCC-13.3.0
+module load  BWA/0.7.18-GCCcore-13.3.0
 
-ml SAMtools/1.16.1-GCC-11.3.0 
-ml BWA/0.7.17-GCCcore-11.3.0
 #
 
 #make directory to store temporary files written by samtools sort
@@ -82,7 +82,7 @@ samtools index "$bam"
 #delete directory written by samtools sort
 rm -r ${tmp}/${accession}
 
-ml deepTools/3.5.2-foss-2022a
+module load deepTools/3.5.5-gfbf-2023a
 #Plot all reads
 bamCoverage -p $THREADS -bs $BIN --normalizeUsing BPM --minMappingQuality 20 --smoothLength $SMOOTH -of bigwig -b "$bam" -o "${bigwig}.bin_${BIN}.smooth_${SMOOTH}Bulk.bw"
 
@@ -90,7 +90,7 @@ bamCoverage -p $THREADS -bs $BIN --normalizeUsing BPM --minMappingQuality 20 --s
 bamCoverage -p $THREADS --MNase -bs 1 --normalizeUsing BPM --minMappingQuality 20 --smoothLength 25 -of bigwig -b "$bam" -o "${bigwig}.bin_${BIN}.smooth_${SMOOTH}_MNase.bw"
 
 #call Peaks
-module load MACS3/3.0.0b1-foss-2022a-Python-3.10.4
+module load MACS3/3.0.1-gfbf-2023a
 
 #using --nolambda paramenter to call peaks without control
 macs3 callpeak -t "${bam}" -f BAMPE -n "${accession}" --broad -g 41037538 --broad-cutoff 0.1 --outdir "${PeakDir}" --min-length 800 --max-gap 500 --nolambda
