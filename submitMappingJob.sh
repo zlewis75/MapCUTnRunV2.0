@@ -34,4 +34,9 @@ while read -r line
 	do
 	sleep 10
 	echo "$line mapping job submitted"
-	sbatch --job-name="${line}" --export=ALL,accession="${line}",fastqPath="${fastqPath}",outdir="${outdir}" MapData.sh & done <"$1"
+	sbatch \
+	  --job-name="${line}" \
+	  --output="${outdir}/logs/%x.out" \
+	  --error="${outdir}/logs/%x.err" \
+	  --export=ALL,accession="${line}",fastqPath="${fastqPath}",outdir="${outdir}" \
+	MapData.sh & done <"$1"
